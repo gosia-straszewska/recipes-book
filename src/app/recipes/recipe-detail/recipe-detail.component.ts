@@ -14,5 +14,9 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  onClick(){
+    console.log("open")
+  }
 
 }
