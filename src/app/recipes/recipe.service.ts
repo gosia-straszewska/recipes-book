@@ -9,27 +9,34 @@ import { Subject } from 'rxjs';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-    private recipes: Recipe[] = [
-        new Recipe(
-            'Pizza',
-            'Neapolitana',
-            'https://media.fshoq.com/images/316/pizza-with-vegetables-on-a-wooden-table-316-medium.jpg',
-            [
-                new Ingredient ('Flour', 1),
-                new Ingredient ('Tomatoes', 10)
-            ]),
-        new Recipe(
-            'Pesto Penne',
-             'Delicious Pasta',
-              'https://p1.pxfuel.com/preview/328/443/588/pesto-pasta-spaghetti-parmesan.jpg',
-              [
-                new Ingredient ('Penne', 1),
-                new Ingredient ('Pesto', 1)
-              ])
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //         'Pizza',
+    //         'Neapolitana',
+    //         'https://media.fshoq.com/images/316/pizza-with-vegetables-on-a-wooden-table-316-medium.jpg',
+    //         [
+    //             new Ingredient ('Flour', 1),
+    //             new Ingredient ('Tomatoes', 10)
+    //         ]),
+    //     new Recipe(
+    //         'Pesto Penne',
+    //          'Delicious Pasta',
+    //           'https://p1.pxfuel.com/preview/328/443/588/pesto-pasta-spaghetti-parmesan.jpg',
+    //           [
+    //             new Ingredient ('Penne', 1),
+    //             new Ingredient ('Pesto', 1)
+    //           ])
 
-      ];
+    //   ];
+
+    private recipes: Recipe[] = [];
 
     constructor(private shoppingListService: ShoppingListService) {}
+
+    setRecipes(recipes: Recipe[]) {
+      this.recipes = recipes;
+      this.recipesChanged.next(this.recipes.slice());
+    }
 
     getRecipes() {
         return this.recipes.slice();
